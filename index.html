@@ -11,9 +11,11 @@
 body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;display:flex;align-items:center;justify-content:center}
 #g{position:relative;width:min(100%,1100px);aspect-ratio:960/600;max-height:100%;border:1px solid #71808a;border-radius:12px;overflow:hidden;box-shadow:0 24px 70px #0009;user-select:none;touch-action:none;background:#102b3b}
 canvas{width:100%;height:100%;display:block;cursor:crosshair}
-#hud{position:absolute;top:8px;left:8px;right:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;pointer-events:none;font-weight:600;font-size:clamp(11px,2vw,18px)}
-.pill{background:#102b38d9;color:#f2f5ee;padding:7px 12px;border:1px solid #ffffff35;border-radius:5px;box-shadow:0 3px 12px #0005;backdrop-filter:blur(8px)}
-#hud button{pointer-events:auto;margin-left:auto}#hud button+button{margin-left:0}
+#hud{position:absolute;top:10px;left:10px;right:10px;display:flex;gap:7px;flex-wrap:wrap;align-items:center;pointer-events:none;font-weight:700;font-size:clamp(10px,1.45vw,14px);z-index:3}
+.pill{background:linear-gradient(145deg,#102f3def,#081c2bdf);color:#f6f4e9;padding:8px 11px;border:1px solid #d8e8df55;border-radius:10px;box-shadow:0 4px 14px #0006,inset 0 1px #ffffff18;backdrop-filter:blur(10px);text-shadow:0 1px 2px #0008;white-space:nowrap}
+.pill span{color:#f4d27e;font-variant-numeric:tabular-nums}
+#hud button{pointer-events:auto;margin-left:auto;border-radius:9px;padding:8px 12px;background:linear-gradient(145deg,#f3d18a,#b58a4e);border:1px solid #fff8;box-shadow:0 3px 0 #735331,0 5px 12px #0005;font-size:inherit}#hud button+button{margin-left:0}
+@media(max-width:620px){#hud{gap:5px;top:6px;left:6px;right:6px}.pill{padding:6px 8px}#hud button{padding:6px 8px}}
 #book{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:#071522d9;color:#f7efd9;padding:18px;overflow:auto;z-index:5}
 #book.on{display:flex}.bookpage{width:min(760px,100%);max-height:100%;overflow:auto;background:linear-gradient(135deg,#ead9ae,#c9ae7d);color:#3c3020;border:9px solid #765536;border-radius:12px;padding:20px;box-shadow:0 15px 50px #000b}
 .bookpage h2{text-align:center;font-family:Georgia,serif;font-size:clamp(24px,4vw,36px);margin:0 0 5px}
@@ -31,15 +33,50 @@ button:hover{transform:translateY(-2px)}button:active{transform:translateY(2px);
 .ov.on{display:flex}.box{display:flex;flex-direction:column;gap:12px;align-items:center;max-width:680px;width:100%}
 h1{font-size:clamp(28px,6vw,54px);margin:0;color:#e9e3cf;text-shadow:0 3px 18px #000}h2,h3{margin:4px 0}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
-.card{background:#fff2;border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:4px;font-size:14px}.card hr{width:100%;opacity:.3}.cur{color:#f1e2b0;font-weight:700}
+.card{background:linear-gradient(145deg,#ffffff20,#06152280);border:1px solid #ffffff2b;border-radius:13px;padding:12px;display:flex;flex-direction:column;gap:6px;font-size:14px;box-shadow:0 6px 18px #0003}.card hr{width:100%;opacity:.3}.cur{color:#f1e2b0;font-weight:700}
 .inv{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:100%;font-size:13px}
 .it{background:#fff2;border-radius:10px;padding:4px 8px;display:flex;gap:6px;align-items:center}.it i{width:12px;height:12px;border-radius:50%;flex:none}.it b{margin-left:auto}.lk{opacity:.5}
+
+/* Loja: painel de compras mais claro e organizado */
+#shop{background:radial-gradient(ellipse at 50% 0%,#31556bdc,#071522f2 72%);backdrop-filter:blur(7px);padding:clamp(10px,3vw,28px);z-index:6}
+#shop .box{max-width:900px;max-height:100%;overflow:auto;align-items:stretch;gap:14px;padding:clamp(14px,2.5vw,24px);border:1px solid #e9d49a66;border-radius:20px;background:linear-gradient(145deg,#193b4bfa,#0b202ff5 65%,#172c35fa);box-shadow:0 22px 65px #000b,inset 0 1px #fff2}
+.shophead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.shophead h2{font-size:clamp(23px,4vw,34px);color:#f6e8c3;margin:0;text-shadow:0 3px 12px #0008}
+.wallet{display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:13px;background:linear-gradient(135deg,#f4d98d,#b98a43);color:#352713;font-weight:800;box-shadow:0 4px 0 #74552d,0 8px 18px #0004}
+.wallet strong{font-size:19px;font-variant-numeric:tabular-nums}
+.shopintro{margin:0;color:#c4d6d9;font-size:13px;text-align:left}
+.shopgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:100%}
+.shopcard{position:relative;overflow:hidden;text-align:left;align-items:stretch;background:linear-gradient(155deg,#ffffff18,#071723a8);border:1px solid #d9e8dc35;border-radius:16px;padding:15px;gap:9px;box-shadow:0 8px 22px #0003}
+.shopcard:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,#e8c77b,#78b5ad,#e8c77b)}
+.shopcardtop{display:flex;align-items:center;gap:9px}
+.shopicon{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#f1d69b20;border:1px solid #f1d69b50;font-size:24px}
+.shopcard h3{font-size:17px;color:#f4e6c4;margin:0}
+.shoplevel{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9fc3bd;font-weight:800}
+.shopcurrent{padding:9px 10px;border-radius:10px;background:#0617228c;border:1px solid #ffffff16}
+.shopcurrent b{display:block;color:#f5d58b;font-size:14px}
+.shopcurrent small,.shopnext small{display:block;color:#c2d1d2;margin-top:3px;line-height:1.4}
+.shoparrow{text-align:center;color:#e6c77e;font-size:18px;line-height:1}
+.shopnext{min-height:62px}
+.shopnext b{color:#fff1cf}
+.shopprice{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#f3d68e;font-weight:800;font-size:15px}
+.shopcard button{width:100%;border:1px solid #fff7;border-radius:10px;padding:10px;background:linear-gradient(135deg,#f5df9e,#c99b51);color:#302514;box-shadow:0 4px 0 #79582e;font-weight:800}
+.shopcard button:disabled{background:#45545a;color:#aab7b7;border-color:#ffffff20;box-shadow:none}
+.shopmax{padding:10px;border-radius:10px;text-align:center;background:#3d765c55;color:#b8e6c4;font-weight:800}
+.shopsection{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#f1e4c5;text-align:left}
+.shopsection h3{margin:0;font-size:16px}
+.shopsection small{color:#aac0c4}
+.shopinv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;width:100%}
+.shopinv .it{background:#ffffff12;border:1px solid #ffffff12;border-radius:9px;padding:8px;font-size:12px;color:#e9eeee;min-width:0}
+.shopinv .it b{color:#f2d78e}
+.shopback{align-self:center;min-width:190px;background:linear-gradient(135deg,#d9e4d3,#8da991);color:#18312c;border-radius:11px;padding:10px 20px;box-shadow:0 4px 0 #49634d}
+@media(max-width:680px){.shopgrid{grid-template-columns:1fr}.shopcard{padding:12px}.shopnext{min-height:0}.shopinv{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 #toast{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);background:#e9dcae;color:#3d2e12;padding:8px 18px;border-radius:6px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none}#toast.on{opacity:1}
 @media(max-width:560px){.grid,.inv{grid-template-columns:1fr 1fr}}
 </style></head><body>
 <div id="g">
 <canvas id="c" width="960" height="600"></canvas>
-<div id="hud"><span class="pill">$ <span id="hc">0</span></span><span class="pill">Pontos <span id="hs">0</span></span><span class="pill">Prof. <span id="hd">0</span></span><span class="pill">Peixes <span id="hk">0</span></span><button id="bs">Loja (S)</button><button id="bn">Caderno</button><button id="bp">Pausa (P)</button></div>
+<div id="hud"><span class="pill">$ <span id="hc">0</span></span><span class="pill">Pontos <span id="hs">0</span></span><span class="pill">Prof. <span id="hd">0</span></span><span class="pill">Peixes <span id="hk">0</span></span><span class="pill">🎣 <span id="hr">Galho</span></span><span class="pill">🪱 <span id="hb">Minhoca</span></span><button id="bs">Loja (S)</button><button id="bn">Caderno</button><button id="bp">Pausa (P)</button></div>
 <div id="toast"></div>
 <div class="ov on" id="menu"><div class="box"><h1>Pesca Selvagem</h1><p>Um simulador de pesca em águas naturais. Escolha o ponto, controle a linha e traga sua captura até o barco.</p><button id="play" style="font-size:26px;padding:12px 40px">Jogar</button><small>MOUSE / ← → mover anzol  •  CLIQUE / ESPAÇO lançar e recolher  •  SEGURE para aliviar a tensão  •  S loja  •  P pausa</small></div></div>
 <div class="ov" id="pause"><div class="box"><h1>Pausado</h1><button id="resume">Continuar</button><button id="restart">Reiniciar (apaga progresso)</button></div></div>
@@ -207,7 +244,14 @@ function drawScene(){
  const b=Math.sin(T*1.6)*2.5-2,a=Math.sin(T*1.3)*.012+tens*.07+Math.sin(T*33)*tens*tens*.008,bend=tens*38+hooked.length*3;
  const co=Math.cos(a),si=Math.sin(a),dx=TX-480,dy=TY+bend,tx=480+dx*co-dy*si,ty=b+dx*si+dy*co;
  X.strokeStyle=`rgb(255,${255-tens*150|0},${255-tens*230|0})`;X.lineWidth=1.3+tens*1.5;X.beginPath();X.moveTo(tx,ty);X.quadraticCurveTo((tx+hk.x)/2+Math.sin(T*40)*tens*7,(ty+hk.y)/2+(hk.st==='idle'?0:14*(1-tens)),hk.x,hk.y);X.stroke();
- X.strokeStyle='#cfd6dc';X.lineWidth=2.5;X.beginPath();X.arc(hk.x+4,hk.y+8,7,-1.2,2.6);X.stroke();X.fillStyle=BC[G.bait];circ(hk.x-2,hk.y+3,3.5);
+ X.strokeStyle='#cfd6dc';X.lineWidth=2.5;X.beginPath();X.arc(hk.x+4,hk.y+8,7,-1.2,2.6);X.stroke();
+  // Iscas com silhuetas próprias para diferenciar cada compra
+  X.save();X.translate(hk.x-2,hk.y+3);X.fillStyle=BC[G.bait];X.strokeStyle='#fff4c8';X.lineWidth=1;
+  if(G.bait===0){X.beginPath();X.ellipse(0,0,4.8,2.4,-.4,0,Math.PI*2);X.fill();X.stroke();X.fillStyle='#f6d6ad';X.beginPath();X.arc(-3,-1,1.2,0,Math.PI*2);X.fill()}
+  else if(G.bait===1){X.beginPath();X.ellipse(0,0,6,3.3,-.25,0,Math.PI*2);X.fill();X.stroke();X.fillStyle='#fff0b8';X.beginPath();X.arc(3,-1,1.2,0,Math.PI*2);X.fill();X.strokeStyle='#ffcf8a';X.beginPath();X.moveTo(-4,1);X.lineTo(-7,4);X.stroke()}
+  else if(G.bait===2){X.beginPath();X.moveTo(-6,0);X.quadraticCurveTo(-2,-6,3,-2);X.quadraticCurveTo(8,2,2,5);X.quadraticCurveTo(-3,6,-6,0);X.fill();X.stroke();X.fillStyle='#fff7c7';circ(1,-1,1.5)}
+  else{X.shadowColor='#d9a8ff';X.shadowBlur=12;X.beginPath();for(let i=0;i<10;i++){const a=i*Math.PI/5,r=i%2?3:7;const px=Math.cos(a)*r,py=Math.sin(a)*r;if(i===0)X.moveTo(px,py);else X.lineTo(px,py)}X.closePath();X.fill();X.stroke();X.fillStyle='#fff';circ(0,0,1.8)}
+  X.restore();
  hooked.forEach((f,i)=>{const n=hooked.length,sh=Math.sin(T*(9+f.thr*22)+i)*f.thr;drawFish(f.s,hk.x+(i-(n-1)/2)*f.sz*.8+sh*7,hk.y+f.sz*.95,f.sz,1,T*(1.5+f.thr*3)+i,-Math.PI/2+sh*.55,f.thr)});
  X.save();X.translate(480,b);X.rotate(a);X.translate(-480,-b);
  // Sombra do casco sobre a água
@@ -244,24 +288,32 @@ function drawScene(){
  const rodTip={x:TX,y:b+TY+bend},rodBase={x:505,y:b-62},rodCtrl={x:552,y:b-88+bend*.15};
  const rodPoint=t=>({x:(1-t)*(1-t)*rodBase.x+2*(1-t)*t*rodCtrl.x+t*t*rodTip.x,y:(1-t)*(1-t)*rodBase.y+2*(1-t)*t*rodCtrl.y+t*t*rodTip.y});
  X.lineCap='round';X.lineJoin='round';
- // Sombra e blank de fibra de carbono
- X.strokeStyle='rgba(0,0,0,.4)';X.lineWidth=8;X.beginPath();X.moveTo(rodBase.x+1,rodBase.y+2);X.quadraticCurveTo(rodCtrl.x+1,rodCtrl.y+2,rodTip.x+1,rodTip.y+2);X.stroke();
+ // Cada melhoria troca o visual da vara: madeira, bambu, fibra, carbono e modelo lendário
+ const rodLooks=[
+  {a:'#59391f',b:'#b98248',c:'#e2c08a',accent:'#d8a66b',w:6},
+  {a:'#53613a',b:'#a9a65f',c:'#e1d39a',accent:'#d8c77a',w:5.5},
+  {a:'#142b38',b:'#32869a',c:'#b5e0df',accent:'#5bd0d0',w:5},
+  {a:'#101820',b:'#526b78',c:'#d5e2e7',accent:'#f0bd64',w:5},
+  {a:'#24133e',b:'#784bc0',c:'#f4dcff',accent:'#ffdc70',w:6}
+ ][G.rod];
+ X.strokeStyle='rgba(0,0,0,.45)';X.lineWidth=rodLooks.w+3;X.beginPath();X.moveTo(rodBase.x+1,rodBase.y+2);X.quadraticCurveTo(rodCtrl.x+1,rodCtrl.y+2,rodTip.x+1,rodTip.y+2);X.stroke();
  const carbon=X.createLinearGradient(rodBase.x,rodBase.y,rodTip.x,rodTip.y);
- carbon.addColorStop(0,'#171f20');carbon.addColorStop(.3,'#66736c');carbon.addColorStop(.65,'#182a2b');carbon.addColorStop(1,'#b4c0b8');
- X.strokeStyle=carbon;X.lineWidth=5;X.beginPath();X.moveTo(rodBase.x,rodBase.y);X.quadraticCurveTo(rodCtrl.x,rodCtrl.y,rodTip.x,rodTip.y);X.stroke();
- X.strokeStyle='rgba(230,240,230,.6)';X.lineWidth=1;X.beginPath();X.moveTo(rodBase.x-1,rodBase.y-1);X.quadraticCurveTo(rodCtrl.x-1,rodCtrl.y-1,rodTip.x,rodTip.y-1);X.stroke();
+ carbon.addColorStop(0,rodLooks.a);carbon.addColorStop(.35,rodLooks.b);carbon.addColorStop(.72,rodLooks.a);carbon.addColorStop(1,rodLooks.c);
+ X.strokeStyle=carbon;X.lineWidth=rodLooks.w;X.beginPath();X.moveTo(rodBase.x,rodBase.y);X.quadraticCurveTo(rodCtrl.x,rodCtrl.y,rodTip.x,rodTip.y);X.stroke();
+ X.strokeStyle=rodLooks.accent;X.lineWidth=G.rod===0?1.8:1.1;X.beginPath();X.moveTo(rodBase.x-1,rodBase.y-1);X.quadraticCurveTo(rodCtrl.x-1,rodCtrl.y-1,rodTip.x,rodTip.y-1);X.stroke();
+ if(G.rod>=2){X.strokeStyle=rodLooks.accent;X.lineWidth=2.4;for(const t of [.18,.38,.58,.78,.94]){const q=rodPoint(t);X.beginPath();X.moveTo(q.x-3,q.y);X.lineTo(q.x+3,q.y);X.stroke()}}
  // Cabo ergonômico de cortiça com textura
  X.strokeStyle='#39271b';X.lineWidth=13;X.beginPath();X.moveTo(rodBase.x,rodBase.y);X.lineTo(518,b-67);X.stroke();
- const cork=X.createLinearGradient(0,b-76,0,b-58);cork.addColorStop(0,'#dfbd8c');cork.addColorStop(.5,'#a8794c');cork.addColorStop(1,'#68452d');
+ const cork=X.createLinearGradient(0,b-76,0,b-58);cork.addColorStop(0,G.rod===4?'#f6df9b':G.rod===3?'#d7dce0':G.rod===2?'#8fc6c4':G.rod===1?'#c5b875':'#dfbd8c');cork.addColorStop(.5,G.rod===4?'#9d6cbd':G.rod===3?'#71818b':G.rod===2?'#397b83':G.rod===1?'#71804b':'#a8794c');cork.addColorStop(1,'#392b2a');
  X.strokeStyle=cork;X.lineWidth=9;X.beginPath();X.moveTo(rodBase.x,rodBase.y);X.lineTo(518,b-67);X.stroke();
  X.strokeStyle='rgba(255,226,177,.5)';X.lineWidth=1;
  for(let i=0;i<4;i++){const xx=507+i*2.7;X.beginPath();X.moveTo(xx,b-69);X.lineTo(xx+1,b-59);X.stroke()}
  // Fixadores metálicos e molinete
  X.strokeStyle='#b9c4bd';X.lineWidth=2;X.beginPath();X.moveTo(516,b-73);X.lineTo(521,b-61);X.moveTo(521,b-73);X.lineTo(526,b-61);X.stroke();
  X.save();X.translate(520,b-57);X.rotate(-.25);
- const reel=X.createLinearGradient(-8,-9,9,10);reel.addColorStop(0,'#d8ded8');reel.addColorStop(.35,'#56625f');reel.addColorStop(1,'#171f22');
+ const reel=X.createLinearGradient(-8,-9,9,10);reel.addColorStop(0,G.rod===4?'#fff0a6':'#d8ded8');reel.addColorStop(.35,G.rod===4?'#9d65c9':G.rod===3?'#7e929c':'#56625f');reel.addColorStop(1,'#171f22');
  X.fillStyle=reel;X.beginPath();X.roundRect(-8,-8,17,18,4);X.fill();
- X.strokeStyle='#d1d9d2';X.lineWidth=1.5;X.beginPath();X.ellipse(1,-1,7,8,0,0,Math.PI*2);X.stroke();
+ X.strokeStyle=rodLooks.accent;X.lineWidth=G.rod>=3?2.4:1.5;X.beginPath();X.ellipse(1,-1,7,8,0,0,Math.PI*2);X.stroke();
  X.strokeStyle='#87958d';X.lineWidth=2;X.beginPath();X.arc(1,-1,4.5,0,Math.PI*2);X.stroke();
  X.fillStyle='#202927';X.beginPath();X.arc(1,-1,2,0,Math.PI*2);X.fill();
  X.strokeStyle='#c4ccc5';X.lineWidth=2;X.beginPath();X.moveTo(-5,3);X.lineTo(-12,10);X.stroke();
@@ -282,11 +334,23 @@ function drawScene(){
  const h=mode!=='play'?'':hk.st==='idle'?'Clique ou ESPAÇO para lançar a linha':hk.st==='down'?'Guie o anzol com o mouse ou ← →  •  ESPAÇO recolhe':hooked.length?(tens>.6?'Tensão alta! SEGURE ESPAÇO ou o botão do mouse para afrouxar':'Recolhendo… afrouxe a linha se a tensão subir'):'Recolhendo… continue guiando o anzol';
  if(h){X.font='600 17px Inter,system-ui,sans-serif';const w=X.measureText(h).width+32;X.fillStyle=tens>.7&&Math.sin(T*14)>0?'#d9534fdd':'#0009';X.beginPath();X.roundRect(W/2-w/2,H-48,w,32,6);X.fill();X.fillStyle='#fff';X.textAlign='center';X.fillText(h,W/2,H-26)}
 }
-function hud(){$('hc').textContent=G.coins;$('hs').textContent=G.score;$('hd').textContent=Math.max(0,hk.y/10|0)+' / '+UP.line.len[G.line]/10+' m';$('hk').textContent=hooked.length+' / '+UP.rod.cap[G.rod]}
-function renderShop(){let h='<h2>Equipamentos</h2><div class="pill">$ '+G.coins+'</div><div class="grid">';
- for(const k in UP){const U=UP[k],lv=G[k],nx=U.L[lv+1];h+=`<div class="card"><b>${U.t}</b><div class="cur">${U.L[lv][0]}</div><small>${U.L[lv][1]}</small><hr>`+(nx?`<div>${nx[0]}</div><small>${nx[1]}</small><button ${G.coins>=nx[2]?'':'disabled'} onclick="buy('${k}')">Comprar $${nx[2]}</button>`:'<div>Nível máximo!</div>')+'</div>'}
- h+='</div><h3>Inventário ('+SP.filter(s=>G.inv[s.n]).length+'/'+SP.length+' espécies)</h3><div class="inv">'+SP.map(s=>{const n=G.inv[s.n]||0;return `<div class="it ${n?'':'lk'}"><i style="background:${s.c1}"></i>${n?s.n:'???'}<b>×${n}</b></div>`}).join('')+'</div><button onclick="toggleShop()">Voltar ao mar</button>';
- $('shop').firstElementChild.innerHTML=h}
+function hud(){$('hc').textContent=G.coins;$('hs').textContent=G.score;$('hd').textContent=Math.max(0,hk.y/10|0)+' / '+UP.line.len[G.line]/10+' m';$('hk').textContent=hooked.length+' / '+UP.rod.cap[G.rod];$('hr').textContent=['Galho','Bambu','Fibra','Profissional','Lendária'][G.rod];$('hb').textContent=['Minhoca','Camarão','Dourada','Mística'][G.bait]}
+function renderShop(){
+ const icons={rod:'🎣',line:'🧵',bait:'🪱'};
+ const descriptions={rod:'Mais força e mais capturas por lançamento.',line:'Alcance novas regiões e pesque em águas profundas.',bait:'Aumente o alcance e atraia espécies especiais.'};
+ let h=`<div class="shophead"><h2>🛒 Loja de equipamentos</h2><div class="wallet">🪙 SALDO <strong>$ ${G.coins}</strong></div></div><p class="shopintro">Melhore seu equipamento para explorar águas mais profundas e capturar peixes raros.</p><div class="shopgrid">`;
+ for(const k of ['rod','line','bait']){
+  const U=UP[k],lv=G[k],nx=U.L[lv+1],pct=lv/(U.L.length-1)*100;
+  h+=`<div class="card shopcard"><div class="shopcardtop"><div class="shopicon">${icons[k]}</div><div><div class="shoplevel">NÍVEL ${lv+1} / ${U.L.length}</div><h3>${U.t}</h3></div></div><small style="color:#c5d5d6">${descriptions[k]}</small><div class="shopcurrent"><small>EQUIPADO AGORA</small><b>${U.L[lv][0]}</b><small>${U.L[lv][1]}</small></div><div class="shoparrow">↓ PRÓXIMA MELHORIA</div>`;
+  if(nx)h+=`<div class="shopnext"><b>${nx[0]}</b><small>${nx[1]}</small></div><div class="shopprice"><span>🪙 Preço</span><strong>$ ${nx[2]}</strong></div><button ${G.coins>=nx[2]?'':'disabled'} onclick="buy('${k}')">${G.coins>=nx[2]?'Comprar melhoria':'Moedas insuficientes'}</button>`;
+  else h+='<div class="shopmax">✦ NÍVEL MÁXIMO ALCANÇADO ✦</div>';
+  h+=`<div style="height:5px;background:#ffffff20;border-radius:9px;overflow:hidden"><div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#77b9a6,#f1d38b);border-radius:9px"></div></div></div>`;
+ }
+ h+=`</div><div class="shopsection"><h3>🎒 Coleção de peixes</h3><small>${SP.filter(s=>G.inv[s.n]).length} de ${SP.length} espécies descobertas</small></div><div class="shopinv">`;
+ h+=SP.map(s=>{const n=G.inv[s.n]||0;return `<div class="it ${n?'':'lk'}"><i style="background:${s.c1}"></i><span>${n?s.n:'???'}</span><b>×${n}</b></div>`}).join('');
+ h+='</div><button class="shopback" onclick="toggleShop()">↩ Voltar ao mar</button>';
+ $('shop').firstElementChild.innerHTML=h;
+}
 function buy(k){const nx=UP[k].L[G[k]+1];if(nx&&G.coins>=nx[2]){G.coins-=nx[2];G[k]++;snd(900,.2,'triangle',.12,500);save();renderShop()}}
 function toggleShop(){if(mode!=='play'||paused||(!shop&&hk.st!=='idle')||bookOpen)return;shop=!shop;$('shop').classList.toggle('on',shop);if(shop)renderShop()}
 let bookOpen=false;
